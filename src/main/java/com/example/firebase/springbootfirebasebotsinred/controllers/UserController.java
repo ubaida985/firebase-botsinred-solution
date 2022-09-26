@@ -20,13 +20,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{deviceID}/users")
+    @GetMapping("/{deviceID}/getuser")
     public List<User> getUsers(@PathVariable String deviceID) throws ExecutionException, InterruptedException {
         return userService.getUsers(deviceID);
     }
 
 
-    @GetMapping("/{deviceID}/users/{userID}")
+    @GetMapping("/{deviceID}/getuser/{userID}")
     public User getUser(@PathVariable String userID ) throws ExecutionException, InterruptedException {
         return userService.getUser(userID);
     }
