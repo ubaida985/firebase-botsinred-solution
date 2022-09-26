@@ -24,6 +24,30 @@ public class ScheduleService {
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
+    public boolean hasDataUpdated(String userID) throws ExecutionException, InterruptedException {
+        if( !userID.equals(Preferences.userID) ){
+            Preferences.lastUpdate = 0;
+            Preferences.userID = userID;
+        }
+        Timestamp lastRead = Timestamp.ofTimeMicroseconds(Preferences.lastUpdate);
+        System.out.println(lastRead);
+        try{
+            Firestore firestoreDB = FirestoreClient.getFirestore();
+            ApiFuture<QuerySnapshot> future = firestoreDB.collection(COLLECTION_NAME)
+                    .whereEqualTo("userID", userID)
+                    .whereGreaterThan("date", lastRead)
+                    .get();
+            List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+            if( documents.size() > 0 ){
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public List<Schedule> getSchedules(String userID) throws ExecutionException, InterruptedException {
         if( !userID.equals(Preferences.userID) ){
             Preferences.lastUpdate = 0;

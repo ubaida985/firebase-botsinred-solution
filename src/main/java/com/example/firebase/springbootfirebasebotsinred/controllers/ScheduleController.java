@@ -14,9 +14,14 @@ public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
-    @GetMapping("/schedules/{userID}")
+    @GetMapping("/fetchnwdata/{userID}")
     public List<Schedule> getSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
         return scheduleService.getSchedules(userID);
+    }
+
+    @GetMapping("/isnwdata/{userID}")
+    public boolean hasDataUpdated(@PathVariable String userID ) throws ExecutionException, InterruptedException {
+        return scheduleService.hasDataUpdated(userID);
     }
 
     @GetMapping("/schedules")
