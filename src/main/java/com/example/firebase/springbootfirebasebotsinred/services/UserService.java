@@ -18,10 +18,10 @@ import java.util.concurrent.ExecutionException;
 public class UserService {
 
     private static final String COLLECTION_NAME = "users";
-    public List<User> getUsers() throws ExecutionException, InterruptedException {
+    public List<User> getUsers(String deviceID) throws ExecutionException, InterruptedException {
         List<User> users = new ArrayList<>();
         Firestore firestoreDB = FirestoreClient.getFirestore();
-        ApiFuture<QuerySnapshot> future = firestoreDB.collection(COLLECTION_NAME).get();
+        ApiFuture<QuerySnapshot> future = firestoreDB.collection(COLLECTION_NAME).whereEqualTo("deviceID", deviceID).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         for (DocumentSnapshot document : documents) {
             users.add(document.toObject(User.class));

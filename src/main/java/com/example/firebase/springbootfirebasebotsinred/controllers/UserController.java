@@ -14,19 +14,19 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/api/deviceID")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users")
-    public List<User> getUsers() throws ExecutionException, InterruptedException {
-        return userService.getUsers();
+    @GetMapping("/{deviceID}/users")
+    public List<User> getUsers(@PathVariable String deviceID) throws ExecutionException, InterruptedException {
+        return userService.getUsers(deviceID);
     }
 
 
-    @GetMapping("/users/{userID}")
+    @GetMapping("/{deviceID}/users/{userID}")
     public User getUser(@PathVariable String userID ) throws ExecutionException, InterruptedException {
         return userService.getUser(userID);
     }

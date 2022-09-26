@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/api/deviceID")
+@RequestMapping("/api/")
 public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;

@@ -2,13 +2,13 @@ package com.example.firebase.springbootfirebasebotsinred.entities;
 
 public class User {
 
-    public static String id = "", userID = "", image = "", username = "", name = "", address = "", contact = "", emergencyContact = "", email = "", bloodGroup = "", weight = "";
+    String deviceID = "", id = "", userID = "", image = "", username = "", name = "", address = "", contact = "", emergencyContact = "", email = "", bloodGroup = "", weight = "";
 
     public User() {
     }
 
 
-    public User(String id, String userID, String image, String username, String name, String address, String contact, String emergencyContact, String email, String bloodGroup, String weight) {
+    public User(String deviceID, String id, String userID, String image, String username, String name, String address, String contact, String emergencyContact, String email, String bloodGroup, String weight) {
         this.id = id;
         this.userID = userID;
         this.image = image;
@@ -34,11 +34,11 @@ public class User {
         this.weight = weight;
     }
 
-    public String getID() {
+    public String getId() {
         return id;
     }
 
-    public void setID(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -122,4 +122,11 @@ public class User {
         this.weight = weight;
     }
 
+    public String getDeviceID() {
+        return deviceID;
+    }
+
+    public void setDeviceID(String deviceID) {
+        this.deviceID = deviceID;
+    }
 }
