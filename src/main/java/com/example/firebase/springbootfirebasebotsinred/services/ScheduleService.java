@@ -84,4 +84,17 @@ public class ScheduleService {
         }
         return schedules;
     }
+
+    public List<Schedule> getAllSchedule(String userID) throws ExecutionException, InterruptedException {
+        List<Schedule> schedules = new ArrayList<>();
+        Firestore firestoreDB = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = firestoreDB.collection(COLLECTION_NAME)
+                .whereEqualTo("userID", userID)
+                .get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (DocumentSnapshot document : documents) {
+            schedules.add(document.toObject(Schedule.class));
+        }
+        return schedules;
+    }
 }

@@ -16,16 +16,25 @@ public class ScheduleController {
 
     @GetMapping("/fetchnwdata/{userID}")
     public List<Schedule> getSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
-        return scheduleService.getSchedules(userID);
+        List<Schedule> schedules = scheduleService.getSchedules(userID);
+        if( schedules.isEmpty() ){
+            hasDataUpdated(userID);
+        }
+        return schedules;
     }
 
     @GetMapping("/isnwdata/{userID}")
-    public boolean hasDataUpdated(@PathVariable String userID ) throws ExecutionException, InterruptedException {
-        return scheduleService.hasDataUpdated(userID);
+    public String hasDataUpdated(@PathVariable String userID ) throws ExecutionException, InterruptedException {
+        return Boolean.toString(scheduleService.hasDataUpdated(userID));
     }
 
     @GetMapping("/schedules")
     public List<Schedule> getSchedules() throws ExecutionException, InterruptedException {
         return scheduleService.getAllSchedules();
+    }
+
+    @GetMapping("/fetchdata/{userID}")
+    public List<Schedule> getAllSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
+        return scheduleService.getAllSchedule(userID);
     }
 }
