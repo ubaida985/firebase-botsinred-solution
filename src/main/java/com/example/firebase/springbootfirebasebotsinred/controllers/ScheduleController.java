@@ -15,12 +15,12 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
     @GetMapping("/fetchnwdata/{userID}")
-    public List<Schedule> getSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
+    public String getSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
         List<Schedule> schedules = scheduleService.getSchedules(userID);
         if( schedules.isEmpty() ){
-            hasDataUpdated(userID);
+            return "false";
         }
-        return schedules;
+        return schedules.toString();
     }
 
     @GetMapping("/isnwdata/{userID}")

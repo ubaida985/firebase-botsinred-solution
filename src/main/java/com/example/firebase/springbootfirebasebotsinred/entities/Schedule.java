@@ -15,6 +15,10 @@ public class Schedule {
     public Schedule() {
     }
 
+    public Schedule(String time){
+        time = "false";
+    }
+
     public Schedule(String time, String name, ArrayList<Category> categories, Date date, boolean completed) {
         this.time = time;
         this.name = name;
