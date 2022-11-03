@@ -20,6 +20,7 @@ public class User {
         this.email = email;
         this.bloodGroup = bloodGroup;
         this.weight = weight;
+        this.deviceID = deviceID;
     }
 
     public User(String image, String username, String name, String address, String contact, String emergencyContact, String email, String bloodGroup, String weight) {
@@ -33,6 +34,7 @@ public class User {
         this.bloodGroup = bloodGroup;
         this.weight = weight;
     }
+
 
     public String getId() {
         return id;

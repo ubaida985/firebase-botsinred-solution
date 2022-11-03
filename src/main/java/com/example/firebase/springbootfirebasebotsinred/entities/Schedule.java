@@ -12,12 +12,12 @@ public class Schedule {
     Date date;
 
     String doseDate;
-    String completed;
+    Boolean completed;
 
     public Schedule() {
     }
 
-    public Schedule(String time, String name, ArrayList<Category> categories, Date date, String doseDate, String completed) {
+    public Schedule(String time, String name, ArrayList<Category> categories, Date date, String doseDate, Boolean completed) {
         this.time = time;
         this.name = name;
         this.categories = categories;
@@ -26,7 +26,7 @@ public class Schedule {
         this.completed = completed;
     }
 
-    public Schedule(String userID, String scheduleID, String time, String name, ArrayList<Category> categories, Date date, String doseDate, String completed) {
+    public Schedule(String userID, String scheduleID, String time, String name, ArrayList<Category> categories, Date date, String doseDate, Boolean completed) {
         this.userID = userID;
         this.scheduleID = scheduleID;
         this.time = time;
@@ -85,11 +85,11 @@ public class Schedule {
         this.date = date;
     }
 
-    public String isCompleted() {
+    public Boolean isCompleted() {
         return completed;
     }
 
-    public void setCompleted(String completed) {
+    public void setCompleted(Boolean completed) {
         this.completed = completed;
     }
 
