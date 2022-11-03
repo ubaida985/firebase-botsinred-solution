@@ -10,30 +10,30 @@ public class Schedule {
     String name;
     ArrayList<Category> categories;
     Date date;
-    boolean completed = false;
+
+    String doseDate;
+    String completed;
 
     public Schedule() {
     }
 
-    public Schedule(String time){
-        time = "false";
-    }
-
-    public Schedule(String time, String name, ArrayList<Category> categories, Date date, boolean completed) {
+    public Schedule(String time, String name, ArrayList<Category> categories, Date date, String doseDate, String completed) {
         this.time = time;
         this.name = name;
         this.categories = categories;
         this.date = date;
+        this.doseDate = doseDate;
         this.completed = completed;
     }
 
-    public Schedule(String userID, String scheduleID, String time, String name, ArrayList<Category> categories, Date date, boolean completed) {
+    public Schedule(String userID, String scheduleID, String time, String name, ArrayList<Category> categories, Date date, String doseDate, String completed) {
         this.userID = userID;
         this.scheduleID = scheduleID;
         this.time = time;
         this.name = name;
         this.categories = categories;
         this.date = date;
+        this.doseDate = doseDate;
         this.completed = completed;
     }
 
@@ -85,12 +85,20 @@ public class Schedule {
         this.date = date;
     }
 
-    public boolean isCompleted() {
+    public String isCompleted() {
         return completed;
     }
 
-    public void setCompleted(boolean completed) {
+    public void setCompleted(String completed) {
         this.completed = completed;
+    }
+
+    public String getDoseDate() {
+        return doseDate;
+    }
+
+    public void setDoseDate(String doseDate) {
+        this.doseDate = doseDate;
     }
 
     @Override
@@ -104,5 +112,18 @@ public class Schedule {
     @Override
     public int hashCode() {
         return Objects.hash(time);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "userID:\"" + userID + "\"" +
+                ", scheduleID:\"" + scheduleID + '\'' +
+                ", time:\"" + time + '\'' +
+                ", name:\"" + name + '\'' +
+                ", categories:\"" + categories +
+                ", date:\"" + date +
+                ", completed:\"" + completed +
+                "\"}";
     }
 }

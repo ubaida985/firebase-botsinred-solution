@@ -5,22 +5,24 @@ import com.example.firebase.springbootfirebasebotsinred.services.ScheduleService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/")
 public class ScheduleController {
+    List<Schedule> schedules;
     @Autowired
     private ScheduleService scheduleService;
 
     @GetMapping("/fetchnwdata/{userID}")
-    public String getSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
-        List<Schedule> schedules = scheduleService.getSchedules(userID);
+    public <T> T getSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
+        schedules = scheduleService.getSchedules(userID);
         if( schedules.isEmpty() ){
-            return "false";
+            return (T) new String("false");
         }
-        return schedules.toString();
+        return (T) new ArrayList<Schedule>(schedules);
     }
 
     @GetMapping("/isnwdata/{userID}")
@@ -29,12 +31,20 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedules")
-    public List<Schedule> getSchedules() throws ExecutionException, InterruptedException {
-        return scheduleService.getAllSchedules();
+    public <T> T getSchedules() throws ExecutionException, InterruptedException {
+        schedules = scheduleService.getAllSchedules();
+        if( schedules.isEmpty() ){
+            return (T) new String("false");
+        }
+        return (T) new ArrayList<Schedule>(schedules);
     }
 
     @GetMapping("/fetchdata/{userID}")
-    public List<Schedule> getAllSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
-        return scheduleService.getAllSchedule(userID);
+    public <T> T getAllSchedule(@PathVariable String userID ) throws ExecutionException, InterruptedException {
+        schedules = scheduleService.getAllSchedule(userID);
+        if( schedules.isEmpty() ){
+            return (T) new String("false");
+        }
+        return (T) new ArrayList<Schedule>(schedules);
     }
 }

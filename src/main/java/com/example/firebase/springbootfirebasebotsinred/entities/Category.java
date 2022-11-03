@@ -46,9 +46,9 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "categoryName='" + categoryName + '\'' +
-                ", pills=" + pills +
-                '}';
+        return "{" +
+                "categoryName:\"" + categoryName + "\"" +
+                ", pills:\"" + pills.toString() +
+                "\"}";
     }
 }
