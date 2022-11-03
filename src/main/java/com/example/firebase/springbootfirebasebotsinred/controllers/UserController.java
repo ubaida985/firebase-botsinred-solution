@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -17,12 +18,17 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/api")
 public class UserController {
 
+    private List<User> users;
     @Autowired
     private UserService userService;
 
     @GetMapping("/{deviceID}/getuser")
-    public List<User> getUsers(@PathVariable String deviceID) throws ExecutionException, InterruptedException {
-        return userService.getUsers(deviceID);
+    public <T> T getUsers(@PathVariable String deviceID) throws ExecutionException, InterruptedException {
+        users = userService.getUsers(deviceID);
+        if( users.isEmpty() ){
+            return (T) new String("false");
+        }
+        return (T) new ArrayList<>(users);
     }
 
 
